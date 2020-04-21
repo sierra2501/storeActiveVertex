@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/gannet.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/readExternalFile.js"></script>
+
+    <script type="text/javascript">
+
+    function do_script (mode, point) {
+
+        var input_text     // inputに保存した頂点の番号のタプル
+        var py_src_store   // ソースコードのstr
+        var py_src_select  // ソースコードのstr
+        var result_str     // 「保存する」の結果(文字列)
+        var result_ary     // 「保存する」の結果(配列)
+        var color_flag     // ナンバーのカラー
+
+        // 保存する ==============================================================================================================================
+        if (mode === "STORE"){
+            py_src_store = readFileToString('py/storeActiveVertex.py');
+
+            // タイムスタンプとポリゴンメッシュ名の切り出し
+            result_str = window.external.setScript(py_src_store);
+            result_ary = result_str.split(',');
+            color_flag = result_ary[0]
+            document.getElementById('timestamp' + '_'+ point).innerHTML = result_ary[1];
+            document.getElementById('polygon_name' + '_'+ point).innerHTML = result_ary[2];
+            result_ary.splice(0, 3);
+            result_str = result_ary.join(',');
+            document.getElementById('want2select' + '_'+ point).value = result_str;
+
+            // 色替え 
+            if (color_flag === "G"){
+                document.getElementById("sh-wd-num-" + point).style.backgroundColor = '#57c971';
+                document.getElementById("sh-wd-num-" + point).style.color = '#ffffff';
+            }else if (color_flag === "Y"){
+                document.getElementById("sh-wd-num-" + point).style.backgroundColor = '#f5ee8c';
+                document.getElementById("sh-wd-num-" + point).style.color = '#555555';
+            }else if (color_flag === "R"){
+                document.getElementById("sh-wd-num-" + point).style.backgroundColor = '#e26f8e';
+                document.getElementById("sh-wd-num-" + point).style.color = '#ffffff';
+            }
+
+        // 選択する ==============================================================================================================================
+        }else if (mode === "SELECT"){
+            if (document.getElementById('want2select' + '_'+ point).value !== " "){
+                py_src_select = readFileToString('py/selectVertex.py');
+                py_src_select = py_src_select.replace("TARGET_V", "\"" + document.getElementById('want2select' + '_'+ point).value + "\"");
+                window.external.setScript(py_src_select);
+            }
+
+        // クリア ================================================================================================================================
+        }else if (mode === "CLEAR"){
+            document.getElementById('polygon_name' + '_'+ point).value = "";
+            document.getElementById('want2select' + '_'+ point).value = "";
+            document.getElementById('polygon_name' + '_'+ point).innerHTML = "";
+            document.getElementById('timestamp' + '_'+ point).innerHTML = "";
+            document.getElementById("sh-wd-num-" + point).style.backgroundColor = 'white';
+            document.getElementById("sh-wd-num-" + point).style.color = '#555555';
+
+        // 何もしない ============================================================================================================================
+        }else{}
+    }
+    </script>
+
+</head>
+
+<body>
+
+    <div id="sh-wd-wrapper">
+
+        <div id="sh-wd-header">
+            <h3>選択した頂点の一時保存</h3>
+        </div>
+
+        <div id="sh-wd-main">
+            <form id="sh-wd-form">
+                <div class = "sh-wd-container">
+                    <div id = "sh-wd-num-1"><h5>1. </h5></div>
+                    <div>
+                        <input type="button" class = "sh-wd-button" value="保存する" onclick="do_script('STORE', '1');" />
+                        <input type="button" class = "sh-wd-button" value="選択する" onclick="do_script('SELECT', '1');" />
+                        <input type="button" class = "sh-wd-button" value="クリア" onclick="do_script('CLEAR', '1');" />
+                        <label for = "want2select_1" class = "sh-wd-label">頂点</label>
+                        <input type="text" id="want2select_1" class = "sh-wd-text" readonly />
+                        <div class = "sh-wd-info">
+                            <p>保存時の情報 : <span id = "polygon_name_1"></span> - <span id = "timestamp_1"></span></p>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class = "sh-wd-container">
+                    <div id = "sh-wd-num-2"><h5>2. </h5></div>
+                    <div>
+                        <input type="button" class = "sh-wd-button" value="保存する" onclick="do_script('STORE', '2');" />
+                        <input type="button" class = "sh-wd-button" value="選択する" onclick="do_script('SELECT', '2');" />
+                        <input type="button" class = "sh-wd-button" value="クリア" onclick="do_script('CLEAR', '2');" />
+                        <label for = "want2select_2" class = "sh-wd-label">頂点</label>
+                        <input type="text" id="want2select_2" class = "sh-wd-text" readonly />
+                        <div class = "sh-wd-info">
+                            <p>保存時の情報 : <span id = "polygon_name_2"></span> - <span id = "timestamp_2"></span></p>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class = "sh-wd-container">
+                    <div id = "sh-wd-num-3"><h5>3. </h5></div>
+                    <div>
+                        <input type="button" class = "sh-wd-button" value="保存する" onclick="do_script('STORE', '3');" />
+                        <input type="button" class = "sh-wd-button" value="選択する" onclick="do_script('SELECT', '3');" />
+                        <input type="button" class = "sh-wd-button" value="クリア" onclick="do_script('CLEAR', '3');" />
+                        <label for = "want2select_3" class = "sh-wd-label">頂点</label>
+                        <input type="text" id="want2select_3" class = "sh-wd-text" readonly />
+                        <div class = "sh-wd-info">
+                            <p>保存時の情報 : <span id = "polygon_name_3"></span> - <span id = "timestamp_3"></span></p>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class = "sh-wd-container">
+                    <div id = "sh-wd-num-4"><h5>4. </h5></div>
+                    <div>
+                        <input type="button" class = "sh-wd-button" value="保存する" onclick="do_script('STORE', '4');" />
+                        <input type="button" class = "sh-wd-button" value="選択する" onclick="do_script('SELECT', '4');" />
+                        <input type="button" class = "sh-wd-button" value="クリア" onclick="do_script('CLEAR', '4');" />
+                        <label for = "want2select_4" class = "sh-wd-label">頂点</label>
+                        <input type="text" id="want2select_4" class = "sh-wd-text" readonly />
+                        <div class = "sh-wd-info">
+                            <p>保存時の情報 : <span id = "polygon_name_4"></span> - <span id = "timestamp_4"></span></p>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class = "sh-wd-container">
+                    <div id = "sh-wd-num-5"><h5>5. </h5></div>
+                    <div>
+                        <input type="button" class = "sh-wd-button" value="保存する" onclick="do_script('STORE', '5');" />
+                        <input type="button" class = "sh-wd-button" value="選択する" onclick="do_script('SELECT', '5');" />
+                        <input type="button" class = "sh-wd-button" value="クリア" onclick="do_script('CLEAR', '5');" />
+                        <label for = "want2select_5" class = "sh-wd-label">頂点</label>
+                        <input type="text" id="want2select_5" class = "sh-wd-text" readonly />
+                        <div class = "sh-wd-info">
+                            <p>保存時の情報 : <span id = "polygon_name_5"></span> - <span id = "timestamp_5"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div id="sh-wd-footer">
+            <p>@sierra2501</p>
+        </div>
+    </div>
+    
+
+</body>
+</html>

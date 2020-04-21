@@ -1,0 +1,114 @@
+/*
+    gannet
+    Version    : 1.0.0
+    Author     : Sierra
+    Author URI : http://tenteroring.luna.ddns.vc/sierra/
+    License: CC BY-SA 4.0
+    License URI: http://creativecommons.org/licenses/by-sa/4.0/
+*/
+html {
+  font-size: 62.5%; }
+
+body {
+  color: #555555;
+  line-height: 2.88rem;
+  font-size: 1.6rem;
+  font-family: "Lucida Grande", "Hiragino Kaku Gothic Pro", "Meiryo", sans-serif; }
+
+h1, h2, h3, h4, h5, h6,
+p, a, ol, ul, li, dl, dd, dt,
+caption, summary, tr, th, td
+blockquote, pre, code {
+  margin: 0;
+  padding: 0; }
+
+/* Headers ============================================== */
+h1 {
+  font-size: 4rem;
+  font-weight: bold;
+  line-height: 7.2rem; }
+
+h2 {
+  font-size: 3rem;
+  font-weight: bold;
+  line-height: 5.4rem; }
+
+h3 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  line-height: 4.5rem; }
+
+h4 {
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 3.6rem; }
+
+h5 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  line-height: 3.24rem; }
+
+h6 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  line-height: 2.88rem; }
+
+/* ====================================================== */
+/* Anchor =============================================== */
+a {
+  text-decoration: none;
+  color: #0084ad; }
+
+/* ====================================================== */
+/* Definition List ====================================== */
+dl {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem; }
+
+dd {
+  padding-left: 2rem; }
+
+/* ====================================================== */
+blockquote {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  border-left: 5px solid #e6e6e6; }
+  blockquote p {
+    font-style: italic; }
+  blockquote cite {
+    display: block;
+    color: #919191;
+    text-align: right; }
+
+pre {
+  background-color: #fafafa;
+  border: 2px solid #f0f0f0;
+  border-radius: 10px;
+  padding-left: 0.5rem; }
+
+/* List ================================================== */
+ol, ul {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 5rem; }
+  ol ol, ol ul, ul ol, ul ul {
+    padding-left: 2rem; }
+
+/* Table ================================================ */
+table {
+  width: 100%;
+  text-align: left;
+  border-spacing: 0rem;
+  border-collapse: separate; }
+
+td, th {
+  padding-left: 1rem;
+  padding-right: 1rem; }
+
+tbody tr:nth-child(2n+1) {
+  background-color: #f0f0f0; }
+
+tbody tr:nth-child(2n) {
+  background-color: #fafafa; }
