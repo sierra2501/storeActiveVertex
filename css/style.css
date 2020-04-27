@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   width: 800px;
-  height: 650px;
+  height: 720px;
   margin: 10px auto;
 }
 #sh-wd-header{
@@ -61,14 +61,19 @@
   width: 300px;
   background-color: #bbbbbb;
 }
+.sh-wd-memo{
+  width: 307px;
+}
 .sh-wd-label{
-  padding-left: 20px;
-  padding-right: 5px;
+  padding-left: 5px;
 }
 .sh-wd-info{
   padding-top: 10px;
   display: flex;
 }
 .sh-wd-info div{
-  width: 48%;
+  width: 307px;
+  padding-right: 13px;
+  white-space: nowrap;
+  overflow-x: hidden;
 }
