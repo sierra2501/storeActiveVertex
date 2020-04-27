@@ -67,4 +67,8 @@
 }
 .sh-wd-info{
   padding-top: 10px;
+  display: flex;
+}
+.sh-wd-info div{
+  width: 48%;
 }
