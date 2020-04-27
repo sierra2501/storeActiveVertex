@@ -18,32 +18,46 @@
         var result_str     // 「保存する」の結果(文字列)
         var result_ary     // 「保存する」の結果(配列)
         var color_flag     // ナンバーのカラー
+        var write_flag     // 上書き可能か
 
         // 保存する ==============================================================================================================================
         if (mode === "STORE"){
-            py_src_store = readFileToString('py/storeActiveVertex.py');
-
-            // タイムスタンプとポリゴンメッシュ名の切り出し
-            result_str = window.external.setScript(py_src_store);
-            result_ary = result_str.split(',');
-            color_flag = result_ary[0]
-            document.getElementById('timestamp' + '_'+ point).innerHTML = result_ary[1];
-            document.getElementById('polygon_name' + '_'+ point).innerHTML = result_ary[2];
-            result_ary.splice(0, 3);
-            result_str = result_ary.join(',');
-            document.getElementById('want2select' + '_'+ point).value = result_str;
-
-            // 色替え 
-            if (color_flag === "G"){
-                document.getElementById("sh-wd-num-" + point).style.backgroundColor = '#57c971';
-                document.getElementById("sh-wd-num-" + point).style.color = '#ffffff';
-            }else if (color_flag === "Y"){
-                document.getElementById("sh-wd-num-" + point).style.backgroundColor = '#f5ee8c';
-                document.getElementById("sh-wd-num-" + point).style.color = '#555555';
-            }else if (color_flag === "R"){
-                document.getElementById("sh-wd-num-" + point).style.backgroundColor = '#e26f8e';
-                document.getElementById("sh-wd-num-" + point).style.color = '#ffffff';
+            
+            // すでに保存された情報があった場合、ダイアログにて確認
+            if (document.getElementById('want2select' + '_'+ point).value != ""){
+                write_flag = confirm("保存された情報があります。上書きしますか？");
+            }else{
+                write_flag = true;
             }
+
+            // 上書き許可
+            if (write_flag === true){
+                py_src_store = readFileToString('py/storeActiveVertex.py');
+
+                // タイムスタンプとポリゴンメッシュ名の切り出し
+                result_str = window.external.setScript(py_src_store);
+                result_ary = result_str.split(',');
+                color_flag = result_ary[0]
+                document.getElementById('timestamp' + '_'+ point).innerHTML = result_ary[1];
+                document.getElementById('polygon_name' + '_'+ point).innerHTML = result_ary[2];
+                result_ary.splice(0, 3);
+                result_str = result_ary.join(',');
+                document.getElementById('want2select' + '_'+ point).value = result_str;
+
+                // 色替え 
+                if (color_flag === "G"){
+                    document.getElementById("sh-wd-num-" + point).style.backgroundColor = '#57c971';
+                    document.getElementById("sh-wd-num-" + point).style.color = '#ffffff';
+                }else if (color_flag === "Y"){
+                    document.getElementById("sh-wd-num-" + point).style.backgroundColor = '#f5ee8c';
+                    document.getElementById("sh-wd-num-" + point).style.color = '#555555';
+                }else if (color_flag === "R"){
+                    document.getElementById("sh-wd-num-" + point).style.backgroundColor = '#e26f8e';
+                    document.getElementById("sh-wd-num-" + point).style.color = '#ffffff';
+                }
+            }else{
+            }
+
 
         // 選択する ==============================================================================================================================
         }else if (mode === "SELECT"){
