@@ -4,7 +4,7 @@
     <name lang="ja">選択した頂点の一時保存</name>
     <name lang="en">storeActiveVertex</name>
     <url>index.html</url>
-    <version>1.0</version>
+    <version>1.1</version>
     <description lang="ja">選択した頂点の一時保存</description>
     <description lang="en">storeActiveVertex</description>
     <window initial_size="400 200" position="0.42 0.63" resizeable="true">

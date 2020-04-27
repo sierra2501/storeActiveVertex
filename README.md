@@ -26,7 +26,7 @@ Shade3Dのスクリプト。選択した頂点を一時保存する。
    3. 赤色はポリゴンメッシュ以外が選択された状態です。
 
 ## バージョン
--v 1.0.0
+-v 1.1.0
 
 ## ライセンス
 [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
