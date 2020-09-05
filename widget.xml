@@ -7,6 +7,6 @@
     <version>1.1</version>
     <description lang="ja">選択した頂点の一時保存</description>
     <description lang="en">storeActiveVertex</description>
-    <window initial_size="400 200" position="0.42 0.63" resizeable="true">
+    <window initial_size="900 850" position="0.5 0.5" resizeable="false">
     </window>
 </widget>
